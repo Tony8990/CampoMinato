@@ -1,0 +1,16 @@
+C:\Users\Tony\Desktop\Esercizi Scuola\C-Project\CampoMinato\CampoMinato\obj\Debug\CampoMinato.csprojResolveAssemblyReference.cache
+C:\Users\Tony\Desktop\Esercizi Scuola\C-Project\CampoMinato\CampoMinato\obj\Debug\CampoMinato.MainForm.resources
+C:\Users\Tony\Desktop\Esercizi Scuola\C-Project\CampoMinato\CampoMinato\obj\Debug\CampoMinato.csproj.GenerateResource.Cache
+C:\Users\Tony\Desktop\Esercizi Scuola\C-Project\CampoMinato\CampoMinato\bin\Debug\CampoMinato.exe
+C:\Users\Tony\Desktop\Esercizi Scuola\C-Project\CampoMinato\CampoMinato\bin\Debug\CampoMinato.pdb
+C:\Users\Tony\Desktop\Esercizi Scuola\C-Project\CampoMinato\CampoMinato\obj\Debug\CampoMinato.exe
+C:\Users\Tony\Desktop\Esercizi Scuola\C-Project\CampoMinato\CampoMinato\obj\Debug\CampoMinato.pdb
+C:\Users\Tony\Desktop\Esercizi Scuola\REPOSITORY\C-Project\CampoMinato\CampoMinato\obj\Debug\CampoMinato.csprojResolveAssemblyReference.cache
+C:\Users\Tony\Desktop\Esercizi Scuola\REPOSITORY\C-Project\CampoMinato\CampoMinato\obj\Debug\CampoMinato.MainForm.resources
+C:\Users\Tony\Desktop\Esercizi Scuola\REPOSITORY\C-Project\CampoMinato\CampoMinato\obj\Debug\CampoMinato.csproj.GenerateResource.Cache
+C:\Users\Tony\Desktop\Esercizi Scuola\REPOSITORY\C-Project\CampoMinato\CampoMinato\obj\Debug\CampoMinato.exe
+C:\Users\Tony\Desktop\Esercizi Scuola\REPOSITORY\C-Project\CampoMinato\CampoMinato\obj\Debug\CampoMinato.Form1.resources
+C:\Users\Tony\Desktop\Esercizi Scuola\REPOSITORY\C-Project\CampoMinato\CampoMinato\obj\Debug\CampoMinato.Record.resources
+C:\Users\Tony\Desktop\Esercizi Scuola\REPOSITORY\C-Project\CampoMinato\CampoMinato\bin\Debug\CampoMinato.exe
+C:\Users\Tony\Desktop\Esercizi Scuola\REPOSITORY\C-Project\CampoMinato\CampoMinato\bin\Debug\CampoMinato.pdb
+C:\Users\Tony\Desktop\Esercizi Scuola\REPOSITORY\C-Project\CampoMinato\CampoMinato\obj\Debug\CampoMinato.pdb
