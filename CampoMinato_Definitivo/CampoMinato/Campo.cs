@@ -42,7 +42,9 @@ namespace CampoMinato
 		int[][] combinazioni = new int[][] { new int[2] { 1, 1 }, new int[2] { 1, 0 }, new int[2] { 1, -1 }, new int[2] { 0, 1 }, new int[2] { 0, -1 }, new int[2] { -1, 1 }, new int[2] { -1, 0 }, new int[2] { -1, -1 } };
 		#endregion
 		#region Variabili del gioco [bombe,bottoni,campo]
-		bool Stato;
+		public int nummosse;
+	
+		public string Stato;
 		const int QUANTI_BOMBE_PRI=10;
 		const int QUANTI_BOMBE_NORM=40;
 		const int QUANTI_BOMBE_EXP=99;
@@ -165,14 +167,16 @@ namespace CampoMinato
 							timerthread.Abort();
 							
 							MessageBox.Show("BOOM HAI PERSO!!");
-							Stato=false;
-							
+							Stato="Sconfitta";
+							string a = countBombe.ToString();
+							string h = nummosse.ToString();
+										
 							long T=timer.ElapsedMilliseconds;
 							var ts=TimeSpan.FromMilliseconds(T);
 						    string s =string.Format("{0:D2}:{1:D2}:{2:D2}",ts.Minutes,ts.Seconds,ts.Milliseconds);
 							this.Close();
 									
-						    Form1 fm =new Form1(livello,s,Stato);
+							Form1 fm =new Form1(livello,s,Stato,a,h);
 										
 							Thread t =new Thread(new ThreadStart(()=>Application.Run(fm)));
 							t.Start();
@@ -187,10 +191,12 @@ namespace CampoMinato
 						ValoriC.Add(new int[]{x,y});
 						do
 						{
+							
 							foreach(int[] pos in ValoriC)
 							{
 								if(Bottoni[pos[0],pos[1]].Enabled)
 								{
+									nummosse++;
 									foreach(int[] comb in combinazioni)
 									{
 										int riga=comb[0]+pos[0];
@@ -253,7 +259,7 @@ namespace CampoMinato
 							{
 								
 								((Button)sender).BackColor=Color.Red;
-							
+							    nummosse++;
 								if(countBombe==0)
 								{
 									string min=Punteggio.ID(livello).Tempomin();
@@ -282,8 +288,10 @@ namespace CampoMinato
 										timer.Stop();
 										var ts=TimeSpan.FromMilliseconds(T);
 										string s =string.Format("{0:D2}:{1:D2}:{2:D2}",ts.Minutes,ts.Seconds,ts.Milliseconds);
-										Stato=true;
-										Form1 fm =new Form1(livello,s,Stato);
+										Stato="Vincitore";
+										string a = countBombe.ToString();
+										string h = nummosse.ToString();
+										Form1 fm =new Form1(livello,s,Stato,a,h);
 										Thread t =new Thread(new ThreadStart(()=>Application.Run(fm)));
 										t.Start();
 										t.Join();
@@ -362,7 +370,7 @@ namespace CampoMinato
 					
 				}
 			}
-			while(--countBombe>0);
+			while(countBombe>0);
 			
 			for(int i = 0;i<dim.Y;i++)
 			{
