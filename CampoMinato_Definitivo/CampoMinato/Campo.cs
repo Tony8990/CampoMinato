@@ -235,7 +235,7 @@ namespace CampoMinato
 								
 								((Button)sender).BackColor=Color.Red;
 							
-								if(countBombe==0)
+								if(--countBombe==0)
 								{
 									string min=Punteggio.ID(livello).Tempomin();
 									string[] sar=min.Split(':');
@@ -255,7 +255,7 @@ namespace CampoMinato
 										}
 										
 									}
-									if(tmp && T > x)
+									if(tmp && T < x)
 									{
 										this.Hide();
 										timerthread.Abort();
@@ -273,7 +273,7 @@ namespace CampoMinato
 							}
 							else
 							{
-								((Button)sender).BackgroundImage=null;
+								((Button)sender).BackColor=Color.Blue;
 								countBombe++;
 							}
 							BombeRimaste.Text=countBombe.ToString();
