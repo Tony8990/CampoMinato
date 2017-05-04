@@ -22,10 +22,12 @@ namespace CampoMinato
 	/// </summary>
 	public partial class Form1 : Form
 	{
+		bool Stato;
 		int Livello;
 		string Tempo;
-		public Form1(int lvl,string tmp)
+		public Form1(int lvl,string tmp,bool s)
 		{
+			Stato=s;
 			Livello=lvl;
 			Tempo=tmp;
 			InitializeComponent();
@@ -45,7 +47,7 @@ namespace CampoMinato
         {
             if (NameBox.Text != "")
             {
-                Punteggio.ID(Livello).Add(NameBox.Text,Tempo);
+                Punteggio.ID(Livello).Add(NameBox.Text,Tempo,Stato);
             }
             this.Hide();
 

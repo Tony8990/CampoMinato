@@ -42,6 +42,10 @@ namespace CampoMinato
 		int[][] combinazioni = new int[][] { new int[2] { 1, 1 }, new int[2] { 1, 0 }, new int[2] { 1, -1 }, new int[2] { 0, 1 }, new int[2] { 0, -1 }, new int[2] { -1, 1 }, new int[2] { -1, 0 }, new int[2] { -1, -1 } };
 		#endregion
 		#region Variabili del gioco [bombe,bottoni,campo]
+		bool Stato;
+		const int QUANTI_BOMBE_PRI=10;
+		const int QUANTI_BOMBE_NORM=40;
+		const int QUANTI_BOMBE_EXP=99;
 		int[,] Bombe;
 		bool[,] Bord;
 		Button[,] Bottoni;
@@ -72,12 +76,15 @@ namespace CampoMinato
 			{
 				case 81 :
 					livello =0;
+					countBombe=QUANTI_BOMBE_PRI;
 					break;
 				case 256:
 					livello =1;
+					countBombe=QUANTI_BOMBE_NORM;
 					break;
 				case 900:
 					livello =2;
+					countBombe=QUANTI_BOMBE_EXP;
 					break;
 				default:
 					break;
@@ -156,8 +163,20 @@ namespace CampoMinato
 						{
 							timer.Stop();
 							timerthread.Abort();
+							
 							MessageBox.Show("BOOM HAI PERSO!!");
+							Stato=false;
+							
+							long T=timer.ElapsedMilliseconds;
+							var ts=TimeSpan.FromMilliseconds(T);
+						    string s =string.Format("{0:D2}:{1:D2}:{2:D2}",ts.Minutes,ts.Seconds,ts.Milliseconds);
 							this.Close();
+									
+						    Form1 fm =new Form1(livello,s,Stato);
+										
+							Thread t =new Thread(new ThreadStart(()=>Application.Run(fm)));
+							t.Start();
+							t.Join();
 							
 							
 							
@@ -235,7 +254,7 @@ namespace CampoMinato
 								
 								((Button)sender).BackColor=Color.Red;
 							
-								if(--countBombe==0)
+								if(countBombe==0)
 								{
 									string min=Punteggio.ID(livello).Tempomin();
 									string[] sar=min.Split(':');
@@ -244,6 +263,7 @@ namespace CampoMinato
 									long T=timer.ElapsedMilliseconds;
 									int x=arg[0]*60*1000+arg[1]*1000+arg[2]*10;
 									bool tmp=true;
+									
 									for(int i_=0;i_<dim.Y;i_++)
 									{
 										for(int j_=0;j_<dim.X;j_++)
@@ -262,8 +282,8 @@ namespace CampoMinato
 										timer.Stop();
 										var ts=TimeSpan.FromMilliseconds(T);
 										string s =string.Format("{0:D2}:{1:D2}:{2:D2}",ts.Minutes,ts.Seconds,ts.Milliseconds);
-										
-										Form1 fm =new Form1(livello,s);
+										Stato=true;
+										Form1 fm =new Form1(livello,s,Stato);
 										Thread t =new Thread(new ThreadStart(()=>Application.Run(fm)));
 										t.Start();
 										t.Join();
@@ -282,7 +302,8 @@ namespace CampoMinato
 				}
 				
 			}
-			int bombeconto=countBombe=((dim.X*dim.Y)*probBombe)/100;
+			
+			//int bombeconto=countBombe=((dim.X*dim.Y)*probBombe)/100;
 			
 			Label l1=new Label()
 			{

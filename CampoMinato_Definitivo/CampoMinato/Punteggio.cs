@@ -76,6 +76,7 @@ namespace CampoMinato
 		}
 		class Score
 		{
+			public string stato;
 			public string Nome;
 			public string Tempo;
 			public Score(string n,string t)
@@ -95,6 +96,7 @@ namespace CampoMinato
 			public static Score Carica(string n)
 			{
 				string[] rec = n.Split(';');
+				
 				
 			   return new Score(rec[0],rec[1]);
 			}
@@ -141,8 +143,21 @@ namespace CampoMinato
 		{
 			return Punti.Count > 0;
 		}
+		public string Stato(bool stato)
+		{
+			switch(stato) 
+			{
+				case true:
+					return string a = "Completato";
+				case false:
+					return string b = "Sconfitta";
+				default
+					break;
+			}
+		}
 		public string Tutti()
 		{
+			
 			return string.Join("",Punti.OrderBy(min =>
 		   {
 		    int [] arg = min.Tempo.Split(':').Select(s=>int.Parse(s)).ToArray();
@@ -156,15 +171,19 @@ namespace CampoMinato
 			return Punti.Count>=puntegioentri ? Punti.Last().Tempo:"60:60:99";
 			
 		}
-		public void Add(string nome,string tempo)
+		public void Add(string nome,string tempo,bool s)
 		{
+			
+			if(s==true||s==false)
+			{
 			Punti.Add(new Score(nome,tempo));
 			
 			Punti=Punti.OrderBy(record=>{
-			                      	int[] arg = record.Tempo.Split(':').Select(s=> int.Parse(s)).ToArray();
+			                      	int[] arg = record.Tempo.Split(':').Select(h=> int.Parse(h)).ToArray();
 			                      	return arg[0]*60*1000+arg[1]*1000+arg[2]*10;
 			                      	
 			                      }).Take(puntegioentri).ToList();
+			}
 		}
 		
 	}
