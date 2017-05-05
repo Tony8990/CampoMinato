@@ -57,7 +57,7 @@ namespace CampoMinato
 		Label timerLabel;
 		Label BombeRimaste;
 		#endregion
-		
+		#region Costruttore_distruttore 
 		int livello;
 		~Campo()
 		{
@@ -99,6 +99,8 @@ namespace CampoMinato
 			this.MaximizeBox=false;
 			this.MinimizeBox=false;
 			Image Bandiera=Image.FromFile(@"C:\Users\Tony\Desktop\Esercizi Scuola\REPOSITORY\CampoMinato\CampoMinato_Definitivo\CampoMinato\Bandierina.bmp");
+			
+			#endregion
 			for(int i=0;i<dim.Y;i++)
 			{
 				for(int j=0;j<dim.X;j++){
@@ -163,6 +165,7 @@ namespace CampoMinato
 						int y=posizione.Y;
 						if(Bord[x,y])
 						{
+							
 							timer.Stop();
 							timerthread.Abort();
 							
@@ -308,7 +311,7 @@ namespace CampoMinato
 				}
 				
 			}
-			
+			#region finestra record
 			//int bombeconto=countBombe=((dim.X*dim.Y)*probBombe)/100;
 			
 			Label l1=new Label()
@@ -337,6 +340,7 @@ namespace CampoMinato
 			this.Controls.Add(l1);
 			this.Controls.Add(timerLabel);
 			this.Controls.Add(BombeRimaste);
+			#endregion
 		#region Bombe Random 	
 			Random rnb = new Random();
 			
