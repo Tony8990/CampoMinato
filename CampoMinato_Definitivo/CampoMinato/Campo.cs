@@ -7,17 +7,17 @@
  * Per modificare questo modello usa Strumenti | Opzioni | Codice | Modifica Intestazioni Standard
  */
 using System;
-using System.Drawing;
-using System.Windows.Forms;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using System.IO;
+using System.Windows.Forms;
+
 
 namespace CampoMinato
 {
@@ -98,7 +98,7 @@ namespace CampoMinato
 			this.FormBorderStyle= FormBorderStyle.Fixed3D;
 			this.MaximizeBox=false;
 			this.MinimizeBox=false;
-			//Image Bandiera=Image.FromFile("Bandierina.png");
+			Image Bandiera=Image.FromFile(@"C:\Users\Tony\Desktop\Esercizi Scuola\REPOSITORY\CampoMinato\CampoMinato_Definitivo\CampoMinato\Bandierina.bmp");
 			for(int i=0;i<dim.Y;i++)
 			{
 				for(int j=0;j<dim.X;j++){
@@ -176,7 +176,7 @@ namespace CampoMinato
 						    string s =string.Format("{0:D2}:{1:D2}:{2:D2}",ts.Minutes,ts.Seconds,ts.Milliseconds);
 							this.Close();
 									
-							Form1 fm =new Form1(livello,s,Stato,a,h);
+							Form1 fm =new Form1(livello,s,Stato);
 										
 							Thread t =new Thread(new ThreadStart(()=>Application.Run(fm)));
 							t.Start();
@@ -255,12 +255,11 @@ namespace CampoMinato
 					{
 						if(e.Button==MouseButtons.Right)
 						{
-							if(((Button)sender).BackColor==Color.Blue)
+							if(((Button)sender).BackgroundImage==null)
 							{
 								
-								((Button)sender).BackColor=Color.Red;
-							    nummosse++;
-								if(countBombe==0)
+								((Button)sender).BackgroundImage=Bandiera;
+							    if(--countBombe == 0)
 								{
 									string min=Punteggio.ID(livello).Tempomin();
 									string[] sar=min.Split(':');
@@ -276,7 +275,7 @@ namespace CampoMinato
 										{
 											if(Bottoni[i_,j_].BackColor!=Color.Blue)
 											{
-												tmp=tmp&&Bord[i_,j_];
+												tmp=tmp && Bord[i_,j_];
 											}
 										}
 										
@@ -289,9 +288,8 @@ namespace CampoMinato
 										var ts=TimeSpan.FromMilliseconds(T);
 										string s =string.Format("{0:D2}:{1:D2}:{2:D2}",ts.Minutes,ts.Seconds,ts.Milliseconds);
 										Stato="Vincitore";
-										string a = countBombe.ToString();
-										string h = nummosse.ToString();
-										Form1 fm =new Form1(livello,s,Stato,a,h);
+										
+										Form1 fm =new Form1(livello,s,Stato);
 										Thread t =new Thread(new ThreadStart(()=>Application.Run(fm)));
 										t.Start();
 										t.Join();
@@ -301,7 +299,7 @@ namespace CampoMinato
 							}
 							else
 							{
-								((Button)sender).BackColor=Color.Blue;
+								((Button)sender).BackgroundImage=null;
 								countBombe++;
 							}
 							BombeRimaste.Text=countBombe.ToString();
@@ -339,7 +337,7 @@ namespace CampoMinato
 			this.Controls.Add(l1);
 			this.Controls.Add(timerLabel);
 			this.Controls.Add(BombeRimaste);
-			
+		#region Bombe Random 	
 			Random rnb = new Random();
 			
 			do
@@ -358,7 +356,7 @@ namespace CampoMinato
 						  {
 						   int somia=i+cbi[0],
 						   somij=j+cbi[1];
-					    	bool esplosa=somia != i && somij != j && somij>=0 && somij < dim.X &&somia>=0&&somia<dim.Y&& Bord[somia,somij];
+					    	bool esplosa=somia != _i && somij != _j && somij>=0 && somij < dim.X &&somia>=0&&somia<dim.Y&& Bord[somia,somij];
 	                       return esplosa;
 						  });
 						  }))
@@ -370,6 +368,11 @@ namespace CampoMinato
 					
 				}
 			}
+			
+			
+			
+			#endregion
+			#region count Bombe
 			while(countBombe>0);
 			
 			for(int i = 0;i<dim.Y;i++)
@@ -392,7 +395,7 @@ namespace CampoMinato
 				}
 				
 			}
-			
+			#endregion 
 		}
 	}
 }

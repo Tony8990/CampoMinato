@@ -78,15 +78,15 @@ namespace CampoMinato
 		}
 		class Score
 		{
-			public string Bombe;
-			public string numMosse;
+			
+			
 			public string Stato;
 			public string Nome;
 			public string Tempo;
-			public Score(string n,string t,string s,string b,string nm)
+			public Score(string n,string t,string s)
 			{
-				Bombe=b;
-				numMosse=nm;
+				
+			
 			 	Nome=n;
 			 	Tempo=t;
 			 	Stato=s;
@@ -94,7 +94,7 @@ namespace CampoMinato
 			
 			public string UnScore()
 			{
-				return string.Format("{0};{1};{2};{3};{4}"+Environment.NewLine,Nome,Tempo,Stato,Environment.NewLine,Bombe,numMosse);
+				return string.Format("{0};{1};{2}"+Environment.NewLine,Nome,Tempo,Stato);
 			}
 			public string AsString()
 			{
@@ -105,7 +105,7 @@ namespace CampoMinato
 				string[] rec = n.Split(';');
 				
 				
-				return new Score(rec[0],rec[1],rec[2],rec[3],rec[4]);
+				return new Score(rec[0],rec[1],rec[2]);
 			}
 			
 		}
@@ -170,7 +170,7 @@ namespace CampoMinato
 		   {
 			int [] arg = min.Tempo.Split(':').Select(s=>int.Parse(s)).ToArray();
 		    return arg[0]*60*1000+arg[1]*1000+arg[2]*10;
-			                                     }).Take(puntegioentri).Select((min,ind)=>string.Format("{0} {1,15} {2} {3} {4} {5} "+Environment.NewLine,ind+1,min.Nome,min.Tempo,min.Stato,min.Bombe,min.numMosse)));
+			                                     }).Take(puntegioentri).Select((min,ind)=>string.Format("{0} {1,15} {2} {3} "+Environment.NewLine,ind+1,min.Nome,min.Tempo,min.Stato)));
 			
 			
 		}
@@ -179,11 +179,11 @@ namespace CampoMinato
 			return Punti.Count>=puntegioentri ? Punti.Last().Tempo:"60:60:99";
 			
 		}
-		public void Add(string nome,string tempo,string stato,string bombe,string mosse)
+		public void Add(string nome,string tempo,string stato)
 		{
 			
 			
-			Punti.Add(new Score(nome,tempo,stato,bombe,mosse));
+			Punti.Add(new Score(nome,tempo,stato));
 	        
 			Punti=Punti.OrderBy(record=>{
 			                      	int[] arg = record.Tempo.Split(':').Select(h=> int.Parse(h)).ToArray();
