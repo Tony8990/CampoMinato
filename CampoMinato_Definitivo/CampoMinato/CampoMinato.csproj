@@ -47,22 +47,31 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Campo.cs" />
+    <Compile Include="Campo.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Campo.Designer.cs">
       <DependentUpon>Campo.cs</DependentUpon>
     </Compile>
-    <Compile Include="IngressoRecord.cs" />
+    <Compile Include="IngressoRecord.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="IngressoRecord.Designer.cs">
       <DependentUpon>IngressoRecord.cs</DependentUpon>
     </Compile>
-    <Compile Include="MainForm.cs" />
+    <Compile Include="json.cs" />
+    <Compile Include="MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Punteggio.cs" />
-    <Compile Include="Record.cs" />
+    <Compile Include="Record.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Record.Designer.cs">
       <DependentUpon>Record.cs</DependentUpon>
     </Compile>
